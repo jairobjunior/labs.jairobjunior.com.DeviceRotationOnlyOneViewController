@@ -8,20 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+protocol CanRotate: class {
+
+}
+
+class ViewController: UIViewController, CanRotate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
-    override func viewWillDisappear(animated : Bool) {
+
+    override func viewWillDisappear(_ animated : Bool) {
         super.viewWillDisappear(animated)
         
-        if (self.isMovingFromParentViewController()) {
-            UIDevice.currentDevice().setValue(Int(UIInterfaceOrientation.Portrait.rawValue), forKey: "orientation")
+        if (self.isMovingFromParentViewController) {
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
         }
     }
-    
-    func canRotate() -> Void {}
 }
